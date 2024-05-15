@@ -6,7 +6,7 @@ Création de plusieurs animations sur le bouton like notamment une animation lik
 
 ## Démonstration
 
-Lien vers le projet :
+Lien vers le projet : https://aperbet56.github.io/animations_bouton_like/
 
 ## Développez avec
 
