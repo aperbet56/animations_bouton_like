@@ -1,0 +1,185 @@
+/**** Reset ****/
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/**** Création de variables CSS ****/
+
+:root {
+  --bg: #444857;
+  --red:  #ff3c41;
+}
+
+/**** Style général de la page ****/
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1c1d22;
+}
+
+input {
+  display: none;
+}
+
+/**** Bouton ****/
+
+label {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background-color: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+/**** Lors du clic sur le coeur ****/
+
+label ion-icon {
+  color: rgba(255, 255, 255, 0.2);
+  padding-top: 5px;
+  font-size: 4rem;
+  animation: dislike 0.5s ease 0s;
+}
+
+input:checked + label ion-icon {
+  color: var(--red);
+  animation: like 0.5s ease 0s ;
+}
+
+/**** Animation sur le coeur *****/ 
+
+@keyframes like {
+    75% {
+      transform: scale(1.25);
+    }
+}
+  
+@keyframes dislike {
+    75% {
+      transform: scale(0.75);
+    }
+}
+
+/**** Animation au survol ****/
+
+.button:hover label ion-icon {
+  color: #9d4958;
+}
+
+/**** Création d'un compteur ****/
+
+label::before {
+  content: "49";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  min-width: 50%;
+  text-align: center;
+  background-color: var(--bg);
+  border-radius: 50px;
+  padding: 3px;
+  color: #777777;
+  z-index: -1;
+  font-family: sans-serif;
+  animation: counter-bot 1.5s ease 0s;
+}
+
+input:checked + label::before {
+  content: "50";
+  color: #ffffff;
+  background-color: var(--red);
+  bottom: inherit;
+  animation: counter-top 1.5s ease 0s;
+}
+
+/**** Animation counter-top (augmentation du compteur) ****/
+
+@keyframes counter-top {
+  70% {
+    top: -47px;
+  }
+}
+
+/**** Animation counter-bot (diminution du compteur) ****/
+
+@keyframes counter-bot {
+  70% {
+    top: inherit;
+    bottom: -50px;
+  }
+}
+
+/**** Création du cercle ****/
+
+label::after {
+  content: "";
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  z-index: -2;
+  transform: rotate(0deg);
+  --pos: 95%;
+  background: 
+  radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 255, 255, 0) 0 62%, var(--bg) 63% 65%,
+    rgba(255, 255, 255, 0) 66% 100%
+  ),
+  radial-gradient(
+    circle at 50% var(--pos),
+    var(--bg) 0 4%,
+    rgba(255, 255, 255, 0) 4.5% 100%
+  );
+  animation: 
+  disc-gray 1.5s ease 0s,
+  spin-gray 0.6s ease-in-out 0.2s;
+}
+
+/**** Animation sur le cercle ****/
+
+@keyframes spin-gray {
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes spin-red {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/**** Animation sur le disque ****/
+
+@keyframes disc-gray {
+    70% {
+      width: 190px;
+      height: 190px;
+    }
+}
+  
+@keyframes disc-red {
+    70% {
+      width: 190px;
+      height: 190px;
+    }
+}
+
+/**** clic sur l'input ****/
+
+input:checked + label::after {
+  --bg: var(--red);
+  --pos: 5%;
+  animation: disc-red 1.5s ease 0s,
+  spin-red 0.65s ease-in-out 0.25s;
+}
